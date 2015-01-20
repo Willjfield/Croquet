@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{A02A96FC-F31B-2228-1526-9B15C1EB4A98}") = "Physics_Lesson", "Assembly-CSharp.csproj", "{1014D9A6-C334-1015-EF0A-756059138938}"
 EndProject
+Project("{A02A96FC-F31B-2228-1526-9B15C1EB4A98}") = "Physics_Lesson", "Assembly-UnityScript.unityproj", "{F4AA4D7F-BC15-E427-4552-A6B779968DBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{1014D9A6-C334-1015-EF0A-756059138938}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1014D9A6-C334-1015-EF0A-756059138938}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1014D9A6-C334-1015-EF0A-756059138938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4AA4D7F-BC15-E427-4552-A6B779968DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4AA4D7F-BC15-E427-4552-A6B779968DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4AA4D7F-BC15-E427-4552-A6B779968DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4AA4D7F-BC15-E427-4552-A6B779968DBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
+																								GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -35,4 +41,5 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
+
 EndGlobal
