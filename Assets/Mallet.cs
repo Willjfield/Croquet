@@ -12,7 +12,7 @@ public class Mallet : MonoBehaviour
 		}
 		// Swing
 		float backswing = Input.GetAxisRaw("Vertical");					
-		rigidbody.AddForce (transform.forward * 80 * backswing);
+		rigidbody.AddForce (transform.forward* 10 * backswing);
 		rigidbody.useGravity = true;	
 		
 	}
