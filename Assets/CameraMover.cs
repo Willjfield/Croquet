@@ -13,10 +13,10 @@ public class CameraMover : MonoBehaviour {
 
 		//Adjust walking speed
 		if (Input.GetKey (KeyCode.LeftShift)) {
-						walkingSpeed = 0.4f;
+						walkingSpeed = 0.5f;
 				} 
 		else if (Input.GetKey (KeyCode.RightShift)) {
-			walkingSpeed = 0.05f;
+			walkingSpeed = 0.025f;
 		}
 		else {
 			walkingSpeed = 0.1f;

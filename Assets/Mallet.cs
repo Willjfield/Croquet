@@ -5,14 +5,14 @@ public class Mallet : MonoBehaviour
 {
 	//public JointLimits limits = hingeJoint.limits;
 
-	void Update ()
+	void FixedUpdate ()
 	{
 		if (Input.GetKey (KeyCode.LeftShift)) {
 		//MalletDown ();
 		}
 		// Swing
 		float backswing = Input.GetAxisRaw("Vertical");					
-		rigidbody.AddForce (transform.forward* 10 * backswing);
+		rigidbody.AddForce (transform.forward* 20 * backswing);
 		rigidbody.useGravity = true;	
 		
 	}
