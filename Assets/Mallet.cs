@@ -8,19 +8,18 @@ public class Mallet : MonoBehaviour
 	void FixedUpdate ()
 	{
 		if (Input.GetKey (KeyCode.LeftShift)) {
-		//MalletDown ();
 		}
-		// Swing
-		float backswing = Input.GetAxisRaw("Vertical");					
+		//Swing Mouse
+		if (Input.GetMouseButton (0)) {
+						float backswingMouse = Input.mousePosition.y - (Screen.height / 2);
+						rigidbody.AddForce (transform.forward * backswingMouse * 0.05f);
+						rigidbody.useGravity = true;
+				}
+		// Swing Keyboard
+		float backswing = Input.GetAxisRaw("Vertical");
 		rigidbody.AddForce (transform.forward* 20 * backswing);
 		rigidbody.useGravity = true;	
-		
+
+
 	}
-	//void MalletDown(){		/// Put mallet down
-//			limits.min = 0;
-//			limits.minBounce = 0;
-//			limits.max = 90;
-//			limits.maxBounce = 0;
-//			hingeJoint.limits = limits;
-	//}
 }

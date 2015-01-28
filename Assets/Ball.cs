@@ -9,7 +9,7 @@ public class Ball : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		Vector3 temp = transform.position; // copy to an auxiliary variable...
 		Vector3 stopMo = new Vector3 (0, 0, 0);
 		
