@@ -1,0 +1,181 @@
+fileFormatVersion: 2
+guid: e524637cdd81944598a4cc4f7138d86a
+timeCreated: 1447091477
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Cylinder
+    100002: Cylinder_1
+    100004: Cylinder_1_2
+    100006: Cylinder_1_3
+    100008: Cylinder_1_4
+    100010: Cylinder_1_5
+    100012: Cylinder_1_6
+    100014: Cylinder_1_7
+    100016: Cylinder_2
+    100018: Cylinder_2_2
+    100020: Cylinder_2_3
+    100022: Cylinder_2_4
+    100024: Cylinder_2_5
+    100026: Cylinder_2_6
+    100028: Cylinder_2_7
+    100030: Cylinder_3
+    100032: Cylinder_4
+    100034: Cylinder_5
+    100036: Cylinder_6
+    100038: Floor
+    100040: Wicket_1
+    100042: Wicket_2
+    100044: Wicket_3
+    100046: Wicket_4
+    100048: Wicket_5
+    100050: Wicket_6
+    100052: Wicket_stake
+    100054: Wickets
+    100056: //RootNode
+    400000: Cylinder
+    400002: Cylinder_1
+    400004: Cylinder_1_2
+    400006: Cylinder_1_3
+    400008: Cylinder_1_4
+    400010: Cylinder_1_5
+    400012: Cylinder_1_6
+    400014: Cylinder_1_7
+    400016: Cylinder_2
+    400018: Cylinder_2_2
+    400020: Cylinder_2_3
+    400022: Cylinder_2_4
+    400024: Cylinder_2_5
+    400026: Cylinder_2_6
+    400028: Cylinder_2_7
+    400030: Cylinder_3
+    400032: Cylinder_4
+    400034: Cylinder_5
+    400036: Cylinder_6
+    400038: Floor
+    400040: Wicket_1
+    400042: Wicket_2
+    400044: Wicket_3
+    400046: Wicket_4
+    400048: Wicket_5
+    400050: Wicket_6
+    400052: Wicket_stake
+    400054: Wickets
+    400056: //RootNode
+    2300000: Cylinder
+    2300002: Cylinder_1
+    2300004: Cylinder_1_2
+    2300006: Cylinder_1_3
+    2300008: Cylinder_1_4
+    2300010: Cylinder_1_5
+    2300012: Cylinder_1_6
+    2300014: Cylinder_1_7
+    2300016: Cylinder_2
+    2300018: Cylinder_2_2
+    2300020: Cylinder_2_3
+    2300022: Cylinder_2_4
+    2300024: Cylinder_2_5
+    2300026: Cylinder_2_6
+    2300028: Cylinder_2_7
+    2300030: Cylinder_3
+    2300032: Cylinder_4
+    2300034: Cylinder_5
+    2300036: Cylinder_6
+    3300000: Cylinder
+    3300002: Cylinder_1
+    3300004: Cylinder_1_2
+    3300006: Cylinder_1_3
+    3300008: Cylinder_1_4
+    3300010: Cylinder_1_5
+    3300012: Cylinder_1_6
+    3300014: Cylinder_1_7
+    3300016: Cylinder_2
+    3300018: Cylinder_2_2
+    3300020: Cylinder_2_3
+    3300022: Cylinder_2_4
+    3300024: Cylinder_2_5
+    3300026: Cylinder_2_6
+    3300028: Cylinder_2_7
+    3300030: Cylinder_3
+    3300032: Cylinder_4
+    3300034: Cylinder_5
+    3300036: Cylinder_6
+    4300000: Cylinder_2
+    4300002: Cylinder_1
+    4300004: Cylinder
+    4300006: Cylinder_2_2
+    4300008: Cylinder_1_2
+    4300010: Cylinder_2_3
+    4300012: Cylinder_2_4
+    4300014: Cylinder_1_3
+    4300016: Cylinder_3
+    4300018: Cylinder_2_5
+    4300020: Cylinder_1_4
+    4300022: Cylinder_4
+    4300024: Cylinder_2_6
+    4300026: Cylinder_1_5
+    4300028: Cylinder_5
+    4300030: Cylinder_2_7
+    4300032: Cylinder_1_6
+    4300034: Cylinder_6
+    4300036: Cylinder_1_7
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
