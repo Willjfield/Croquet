@@ -9,16 +9,16 @@ public class Mallet : MonoBehaviour
 		void Update ()
 		{
 				//Swing Mouse
-				/*
+				
 				mousePos = Input.mousePosition.y;
-				if (Input.GetMouseButton (0)) {						
+				if (Input.GetMouseButton (0) && Input.GetKey (KeyCode.LeftControl)) {						
 						float backswingMouse = mousePos - mousePos2;
 						GetComponent<Rigidbody>().AddForce (transform.forward * backswingMouse * 1.5f);
-						GetComponent<Rigidbody>().useGravity = true;
+						GetComponent<Rigidbody>().useGravity = false;
 				} else {
 						mousePos2 = mousePos;
 				}
-				*/
+
 				// Swing Keyboard
 				float backswing = Input.GetAxisRaw ("Vertical");
 				GetComponent<Rigidbody>().AddForce (transform.forward * 20 * backswing);
