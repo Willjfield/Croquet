@@ -19,7 +19,7 @@ public class CameraMover : MonoBehaviour {
 			walkingSpeed = 0.025f;
 		}
 		else {
-			walkingSpeed = 0.1f;
+			walkingSpeed = 0.05f;
 				}
 		//Move around
 		if(Camera.current != null)
