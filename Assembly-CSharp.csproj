@@ -66,7 +66,6 @@
      <Compile Include="Assets\src\OSC\OSCMessage.cs" />
      <Compile Include="Assets\src\OSC\OSCPacket.cs" />
      <Compile Include="Assets\src\OSC\OSCServer.cs" />
-     <None Include="Assets\Materials\DoubleSidedSphere.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

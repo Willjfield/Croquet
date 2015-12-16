@@ -10,6 +10,18 @@ public class cameraInOut : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(Vector3.forward * Input.GetAxis("Mouse ScrollWheel"));
+		Vector3 temp = transform.position;
+		transform.Translate (Vector3.forward * Input.GetAxis ("Mouse ScrollWheel"));
+		/*
+		if (transform.position.z > 5f) {
+			temp.z = 5f;
+			transform.position=temp;
+		}
+
+		if (transform.position.z > 0f) {
+			temp.y = 0f;
+			transform.position=temp;
+		}
+			*/
 	}
 }

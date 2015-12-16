@@ -47,7 +47,6 @@
   <ItemGroup>
      <Compile Include="Assets\src\Editor\OSCHelper.cs" />
      <Compile Include="Assets\src\Editor\SEND_OSCHelper.cs" />
-     <None Include="Assets\Materials\DoubleSidedSphere.shader" />
  <Reference Include="Assembly-UnityScript">
  <HintPath>/Users/willjfield/Desktop/Projects/Personal/Croquet/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
