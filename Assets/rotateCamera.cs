@@ -13,10 +13,10 @@ public class rotateCamera : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//tempRot.Set(0,0,Input.mousePosition.y);
-		if(Input.GetKey (KeyCode.LeftShift)){
-			tempRoty = Input.mousePosition.y.Map (Screen.height, 0,90, 180);
-			tempRotx = Input.mousePosition.x.Map (Screen.height, 0,90, 180);
-			transform.localRotation = Quaternion.Euler (tempRoty, tempRotx,180);
+		if(Input.GetKey (KeyCode.LeftControl)){
+			tempRoty = Input.mousePosition.y.Map (Screen.height, 0,-45, 45);
+			tempRotx = Input.mousePosition.x.Map (Screen.width, 0,-45, 45);
+			transform.localRotation = Quaternion.Euler (tempRoty, tempRotx,0);
 		}
 	}
 }

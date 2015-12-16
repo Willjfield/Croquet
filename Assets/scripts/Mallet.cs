@@ -9,7 +9,7 @@ public class Mallet : MonoBehaviour
 		void Update ()
 		{
 				//Swing Mouse
-				
+				/*
 				mousePos = Input.mousePosition.y;
 				if (Input.GetMouseButton (0) && Input.GetKey (KeyCode.LeftControl)) {						
 						float backswingMouse = mousePos - mousePos2;
@@ -18,12 +18,12 @@ public class Mallet : MonoBehaviour
 				} else {
 						mousePos2 = mousePos;
 				}
-
+				*/
 				// Swing Keyboard
 				float backswing = Input.GetAxisRaw ("Vertical");
 				GetComponent<Rigidbody>().AddForce (transform.forward * 20 * backswing);
-				GetComponent<Rigidbody>().useGravity = true;	
-				mousePos2 = mousePos;
+				//GetComponent<Rigidbody>().useGravity = true;	
+				//mousePos2 = mousePos;
 
 		}
 }
