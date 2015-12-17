@@ -5,7 +5,11 @@ public class Mallet : MonoBehaviour
 {
 		float mousePos = 0.0f;
 		float mousePos2 = 0.0f;
+		private float swingStrength = .5f;
 
+		public void adjustswingStrength(float theStrength){
+			swingStrength = theStrength;
+		}
 		void Update ()
 		{
 				//Swing Mouse
@@ -21,7 +25,7 @@ public class Mallet : MonoBehaviour
 				*/
 				// Swing Keyboard
 				float backswing = Input.GetAxisRaw ("Vertical");
-				GetComponent<Rigidbody>().AddForce (transform.forward * 20 * backswing);
+				GetComponent<Rigidbody>().AddForce (transform.forward * 100 * backswing * swingStrength);
 				//GetComponent<Rigidbody>().useGravity = true;	
 				//mousePos2 = mousePos;
 

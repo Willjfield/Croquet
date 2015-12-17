@@ -2,25 +2,27 @@
 using System.Collections;
 
 public class CameraMover : MonoBehaviour {
-	private float walkingSpeed;
+	public float walkingSpeed;
 	// Use this for initialization
 	void Start () {
-		walkingSpeed = 0.1f;
+		walkingSpeed = 0.5f;
 	}
-	
+	public void adjustWalkingSpeed(float theSpeed){
+		walkingSpeed = theSpeed;
+	}
 	// Update is called once per frame
 	void Update () {
 
 		//Adjust walking speed
-		if (Input.GetKey (KeyCode.LeftShift)) {
-						walkingSpeed = 0.5f;
-				} 
-		else if (Input.GetKey (KeyCode.RightShift)) {
-			walkingSpeed = 0.025f;
-		}
-		else {
-			walkingSpeed = 0.05f;
-				}
+//		if (Input.GetKey (KeyCode.LeftShift)) {
+//						walkingSpeed = 0.5f;
+//				} 
+//		else if (Input.GetKey (KeyCode.RightShift)) {
+//			walkingSpeed = 0.025f;
+//		}
+//		else {
+//			walkingSpeed = 0.05f;
+//				}
 		//Move around
 		if(Camera.current != null)
 		{
