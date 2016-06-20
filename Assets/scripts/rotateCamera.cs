@@ -16,7 +16,8 @@ public class rotateCamera : MonoBehaviour {
 		if(Input.GetKey (KeyCode.LeftControl)){
 			tempRoty = Input.mousePosition.y.Map (Screen.height, 0,-45, 45);
 			tempRotx = Input.mousePosition.x.Map (Screen.width, 0,-45, 45);
-			transform.localRotation = Quaternion.Euler (tempRoty, tempRotx,0);
+			transform.localRotation = Quaternion.Euler (tempRoty, tempRotx,-tempRotx);
+
 		}
 	}
 }
