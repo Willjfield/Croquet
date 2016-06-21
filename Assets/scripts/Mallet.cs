@@ -29,5 +29,12 @@ public class Mallet : MonoBehaviour
 				//GetComponent<Rigidbody>().useGravity = true;	
 				//mousePos2 = mousePos;
 
+			if (Input.GetKey ("space")) {
+					GameObject.Find ("ShootLine").GetComponent<MeshRenderer> ().enabled = true;
+				} else {
+					GameObject.Find ("ShootLine").GetComponent<MeshRenderer> ().enabled = false;
+				}
 		}
+
+
 }

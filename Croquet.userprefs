@@ -1,10 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/ScoreWicket.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Ball.cs">
     <Files>
       <File FileName="Assets/scripts/rotateCamera.cs" Line="19" Column="76" />
       <File FileName="Assets/scripts/ScoreWicket.cs" Line="32" Column="5" />
-      <File FileName="Assets/scripts/Ball.cs" Line="27" Column="34" />
+      <File FileName="Assets/scripts/Ball.cs" Line="29" Column="45" />
+      <File FileName="Assets/scripts/DragTransform.cs" Line="9" Column="80" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

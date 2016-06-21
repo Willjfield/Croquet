@@ -4,6 +4,7 @@ using System.Collections;
 public class Ball : MonoBehaviour {
 	public float boundary_W, boundary_E, boundary_S, boundary_N;
 	private int nextWicket;
+	private string color;
 	// Use this for initialization
 	void Start () {
 		boundary_W = -254.2f;
@@ -11,6 +12,8 @@ public class Ball : MonoBehaviour {
 		boundary_S = .2481f;
 		boundary_N = -34.65f;
 		nextWicket = 1;
+		string name = this.name;
+		color = name.Substring(0,name.Length-4);
 	}
 
 	public void setWicket(int wicketNum){
@@ -23,7 +26,8 @@ public class Ball : MonoBehaviour {
 
 	public void moveToNextWicket(){
 		nextWicket++;
-
+		GameObject ballUI = GameObject.Find(color+"Button");
+		ballUI.GetComponentInChildren<UnityEngine.UI.Text>().text = nextWicket.ToString();
 		Debug.Log (this.gameObject.name+" is going for wicket " + nextWicket);
 	}
 
