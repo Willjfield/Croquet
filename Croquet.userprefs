@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Work/AMNH/Dinos/Assets/ParticleScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/ScoreWicket.cs">
     <Files>
-      <File FileName="../../Work/AMNH/Dinos/Assets/ParticleScript.cs" Line="9" Column="68" />
+      <File FileName="Assets/scripts/rotateCamera.cs" Line="19" Column="76" />
+      <File FileName="Assets/scripts/ScoreWicket.cs" Line="32" Column="5" />
+      <File FileName="Assets/scripts/Ball.cs" Line="27" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

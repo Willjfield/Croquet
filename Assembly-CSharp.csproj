@@ -55,6 +55,7 @@
      <Compile Include="Assets\scripts\PlayMovieTextureOnUI.cs" />
      <Compile Include="Assets\scripts\SEND_OSCHandler.cs" />
      <Compile Include="Assets\scripts\SEND_oscControl.cs" />
+     <Compile Include="Assets\scripts\ScoreWicket.cs" />
      <Compile Include="Assets\scripts\SimpleSmoothMouseLook.cs" />
      <Compile Include="Assets\scripts\WebCameraScript.cs" />
      <Compile Include="Assets\scripts\cameraInOut.cs" />
