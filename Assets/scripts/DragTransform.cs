@@ -18,5 +18,22 @@ class DragTransform : MonoBehaviour
 			float Z = transform.position.z;
 			transform.position = new Vector3(X, -0.08268002f, Z);		
 		}
+		ballFreeze ();
+	}
+	
+	void ballFreeze(){
+		foreach (Transform ball in transform.parent)
+		{
+			if(ball != this.transform){
+				ball.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+			}
+		}
+	}
+
+	void OnMouseUp(){
+		foreach (Transform ball in transform.parent)
+		{
+			ball.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+		}
 	}
 }

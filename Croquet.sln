@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{587A3B72-51BF-7737-FE0C-438C30AD86FB}") = "Croquet", "Assembly-CSharp.csproj", "{F5E49759-C9BF-8941-F135-0D8231A1B35A}"
 EndProject
-Project("{587A3B72-51BF-7737-FE0C-438C30AD86FB}") = "Croquet", "Assembly-CSharp-Editor.csproj", "{1ADA0C84-1349-6281-DB6B-B5E1B260CE10}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,15 +13,11 @@ Global
 		{F5E49759-C9BF-8941-F135-0D8231A1B35A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5E49759-C9BF-8941-F135-0D8231A1B35A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5E49759-C9BF-8941-F135-0D8231A1B35A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1ADA0C84-1349-6281-DB6B-B5E1B260CE10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1ADA0C84-1349-6281-DB6B-B5E1B260CE10}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1ADA0C84-1349-6281-DB6B-B5E1B260CE10}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1ADA0C84-1349-6281-DB6B-B5E1B260CE10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																																																GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																																																																							GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
