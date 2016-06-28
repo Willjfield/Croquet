@@ -12,17 +12,6 @@ public class CameraMover : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-
-		//Adjust walking speed
-//		if (Input.GetKey (KeyCode.LeftShift)) {
-//						walkingSpeed = 0.5f;
-//				} 
-//		else if (Input.GetKey (KeyCode.RightShift)) {
-//			walkingSpeed = 0.025f;
-//		}
-//		else {
-//			walkingSpeed = 0.05f;
-//				}
 		//Move around
 		if(Camera.current != null)
 		{
@@ -51,6 +40,35 @@ public class CameraMover : MonoBehaviour {
 				this.transform.Translate(new Vector3(0.0f, 0.0f,0.1f*walkingSpeed));
 				  
 			}
+
+
+			
 		}	
+	}
+
+	public void moveToBall(GameObject ball){
+		{
+			Vector3 Pos3D = ball.transform.position;
+			
+			int targetWicketNum = ball.GetComponent<Ball>().getWicket();
+			string targetWicketName = "Wicket_"+targetWicketNum;
+			GameObject targetWicket = GameObject.Find(targetWicketName);
+			
+			Vector3 wicketDirection = Pos3D-targetWicket.transform.position;
+			float wicketDistance = wicketDirection.magnitude*2f;
+			Vector3 normalWicketDirection = wicketDirection/wicketDistance;
+			Vector3 newPosition = Pos3D+normalWicketDirection;
+			
+			Vector3 temp = transform.position;
+			temp.x = newPosition.x;
+			temp.z = newPosition.z;
+			
+			Vector3 LookTarget = targetWicket.transform.position;
+			LookTarget.y = transform.position.y;
+			
+			transform.position=temp;
+			transform.LookAt(LookTarget);
+			transform.Rotate(0,90,0);
+		} 
 	}
 }

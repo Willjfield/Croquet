@@ -5,8 +5,13 @@ public class Ball : MonoBehaviour {
 	public float boundary_W, boundary_E, boundary_S, boundary_N;
 	private int nextWicket;
 	private string color;
+
+	private bool ballInHand;
+	
+	private int strokesLeft;
 	// Use this for initialization
 	void Start () {
+
 		boundary_W = -254.2f;
 		boundary_E = -226.355f;
 		boundary_S = .2481f;
@@ -14,6 +19,27 @@ public class Ball : MonoBehaviour {
 		nextWicket = 1;
 		string name = this.name;
 		color = name.Substring(0,name.Length-4);
+
+		if (color == "Blue") {
+			strokesLeft = 1;		
+		} else {
+			strokesLeft = 0;		
+		}
+
+		ballInHand = true;
+	}
+
+	public void setStrokes(int strokeNum){
+		strokesLeft = strokeNum;
+		Debug.Log (this.gameObject.name+" has "+strokesLeft+" strokes left");
+	}
+
+	public int getStrokes(){
+		return strokesLeft;
+	}
+
+	public void setBallInHand(bool _ballInHand){
+		ballInHand = _ballInHand;
 	}
 
 	public void setWicket(int wicketNum){
@@ -26,9 +52,12 @@ public class Ball : MonoBehaviour {
 
 	public void moveToNextWicket(){
 		nextWicket++;
+		strokesLeft++;
+
 		GameObject ballUI = GameObject.Find(color+"Button");
-		ballUI.GetComponentInChildren<UnityEngine.UI.Text>().text = nextWicket.ToString();
+		ballUI.GetComponentInChildren<UnityEngine.UI.Text>().text = "for wicket #"+nextWicket.ToString();
 		Debug.Log (this.gameObject.name+" is going for wicket " + nextWicket);
+		Debug.Log (this.gameObject.name+" has "+strokesLeft+" strokes left");
 	}
 
 	// Update is called once per frame
@@ -63,5 +92,38 @@ public class Ball : MonoBehaviour {
 			GetComponent<Rigidbody>().angularVelocity = stopMo;
 		}
 		
+	}
+
+	void OnTriggerEnter(Collider collider){
+		if (collider.name == "MalletHead") {
+
+			ballInHand = false;
+
+			if(strokesLeft>0 && RulesManager.getCurBallName()==this.name){
+				strokesLeft--;
+				Debug.Log (this.gameObject.name+" hit the mallet and has "+strokesLeft+" strokes left");
+			}
+
+			if(RulesManager.getCurBallName()!=this.name){
+				Debug.Log (this.gameObject.name+" played out of turn");
+			}
+
+			if(strokesLeft == 0 && RulesManager.getCurBallName()==this.name){
+				Debug.Log (this.gameObject.name+" is done its turn unless it gets extra shots...");
+				RulesManager.nextBall();
+			}
+		}
+
+		if (collider.name.Contains("Ball") && (RulesManager.getLastBallName()==this.name||(strokesLeft==1 && RulesManager.getCurBallName()==this.name))  && !ballInHand) {
+				RulesManager.setBallsInHand();
+				if(RulesManager.getLastBallName()==this.name){
+					RulesManager.lastBall();
+				}
+				GameObject currentBall = GameObject.Find (RulesManager.getCurBallName());
+				currentBall.GetComponent<Ball> ().setStrokes (2);
+				//strokesLeft = 2;
+				Debug.Log (this.gameObject.name+" hit "+collider.name+" and has "+strokesLeft+" strokes left");
+				
+		}
 	}
 }
