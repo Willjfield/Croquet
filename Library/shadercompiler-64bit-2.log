@@ -273,3 +273,6 @@ Cmd: compileSnippet
   api=5 type=0 insize=3858 outsize=3373 kw=POINT_COOKIE pd=UNITY_NO_DXT5nm UNITY_NO_RGBM UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
 Cmd: compileSnippet
   api=5 type=1 insize=3858 outsize=6 kw=DIRECTIONAL pd=UNITY_NO_DXT5nm UNITY_NO_RGBM UNITY_NO_SCREENSPACE_SHADOWS UNITY_NO_LINEAR_COLORSPACE ok=1
+End of pipe
+
+Quitting shader compiler process
