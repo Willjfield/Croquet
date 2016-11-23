@@ -107,7 +107,7 @@ public class Ball : MonoBehaviour {
 			if(RulesManager.getCurBallName()!=this.name){
 				Debug.Log (this.gameObject.name+" played out of turn");
 			}
-
+			//Change this to happen when ball stops, not onTriggerEnter
 			if(strokesLeft == 0 && RulesManager.getCurBallName()==this.name){
 				Debug.Log (this.gameObject.name+" is done its turn unless it gets extra shots...");
 				RulesManager.nextBall();

@@ -5,7 +5,7 @@ public class CameraMover : MonoBehaviour {
 	public float walkingSpeed;
 	// Use this for initialization
 	void Start () {
-		walkingSpeed = 0.5f;
+		walkingSpeed = 0.1f;
 	}
 	public void adjustWalkingSpeed(float theSpeed){
 		walkingSpeed = theSpeed;
