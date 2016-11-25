@@ -34,6 +34,9 @@ public class UIManager : MonoBehaviour {
 		case 4:
 			transform.FindChild ("CurrentGameStatus").gameObject.SetActive (false);
 			break;
+		case 5:
+			Application.Quit();
+			break;
 		}
 	}
 }
