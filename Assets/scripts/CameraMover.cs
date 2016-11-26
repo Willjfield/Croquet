@@ -3,13 +3,11 @@ using System.Collections;
 
 public class CameraMover : MonoBehaviour {
 	public float walkingSpeed;
-	private JointLimits limits;
 	GameObject MalletShaft;
 	// Use this for initialization
 	void Start () {
 		walkingSpeed = 0.1f;
 		MalletShaft = GameObject.Find ("MalletShaft");
-		limits = MalletShaft.GetComponent<HingeJoint>().limits;
 	}
 	public void adjustWalkingSpeed(float theSpeed){
 		walkingSpeed = theSpeed;
@@ -22,7 +20,7 @@ public class CameraMover : MonoBehaviour {
 		{
 			//Look around
 			float inputRot = Input.GetAxis("Horizontal");
-			this.transform.Rotate(Vector3.up*inputRot);
+			//this.transform.Rotate(Vector3.up*inputRot);
 
 			//Move around
 			if (Input.GetKey (KeyCode.W))
@@ -65,18 +63,13 @@ public class CameraMover : MonoBehaviour {
 				rotationDeg.y = -DetectTouchMovement.turnAngleDelta;
 				desiredRotation *= Quaternion.Euler(rotationDeg);
 			}
-
-			if(DetectTouchMovement.panDistance.magnitude > 0 || Mathf.Abs(DetectTouchMovement.turnAngleDelta) > 0){
-				limits.min = 0;
-				limits.bounciness = 0;
-				limits.max = 0;
-				MalletShaft.GetComponent<HingeJoint>().limits = limits;
-			}
 			
 			// not so sure those will work:
 			transform.rotation = desiredRotation;
-			transform.localPosition += Vector3.forward * DetectTouchMovement.panDistance.y;
-			transform.localPosition += Vector3.right * DetectTouchMovement.panDistance.x;
+			this.transform.Translate(new Vector3(DetectTouchMovement.panDistance.y, 0.0f, 0.0f));
+			this.transform.Translate(new Vector3(0.0f, 0.0f,-DetectTouchMovement.panDistance.x));
+			//transform.localPosition += Vector3.forward * DetectTouchMovement.panDistance.y;
+			//transform.localPosition += Vector3.right * DetectTouchMovement.panDistance.x;
 		#endif
 	}
 

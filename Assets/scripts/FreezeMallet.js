@@ -7,7 +7,10 @@ function Start () {
 function Update () {
 // Make hinge limit for a door.
 	var limits = GetComponent.<HingeJoint>().limits;
-	if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift)) {
+
+	if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift) || Input.touchCount > 1 ) {
+		//transform.rotation = Quaternion.Euler (0,0,0);
+		Debug.Log("freezing");
 		limits.min = 0;
 		limits.bounciness = 0;
 		limits.max = 0;

@@ -51,6 +51,7 @@
      <Compile Include="Assets\scripts\DetectTouchMovement.cs" />
      <Compile Include="Assets\scripts\DragTransform.cs" />
      <Compile Include="Assets\scripts\Mallet.cs" />
+     <Compile Include="Assets\scripts\Marker.cs" />
      <Compile Include="Assets\scripts\MoveCamera.cs" />
      <Compile Include="Assets\scripts\RulesManager.cs" />
      <Compile Include="Assets\scripts\ScoreWicket.cs" />

@@ -12,6 +12,7 @@ public class cameraInOut : MonoBehaviour {
 	void Update () {
 		Vector3 temp = transform.position;
 		transform.Translate (Vector3.forward * Input.GetAxis ("Mouse ScrollWheel"));
+		transform.Translate (Vector3.forward * DetectTouchMovement.pinchDistanceDelta);
 		/*
 		if (transform.position.z > 5f) {
 			temp.z = 5f;

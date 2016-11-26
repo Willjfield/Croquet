@@ -9,23 +9,29 @@ public class Mallet : MonoBehaviour
 		float oldTheta = 0f;
 		float initialTheta = 0f;
 		private GameObject MalletShaft;
+		private JointLimits limits;
+		private float startTouch = 0f;
+		private GameObject BallMarkers;
 
 		public void adjustswingStrength(float theStrength){
 			swingStrength = theStrength;
 		}
 
-		void start(){
+		void Start(){
 			//GameObject.Find ("ShootLine").GetComponent<MeshRenderer> ().enabled = false;
-			MalletShaft = GameObject.Find ("MalletShaft");
+			MalletShaft = GameObject.Find("MalletShaft");
+			limits = MalletShaft.GetComponent<HingeJoint>().limits;
+
+			BallMarkers = GameObject.Find ("BallMarkers");
+			BallMarkers.SetActive(true);
 		}
 
-		void Update ()
+		void LateUpdate ()
 		{
 		#if (UNITY_EDITOR || UNITY_STANDALONE)
 				// Swing Keyboard
 				float backswing = Input.GetAxisRaw ("Vertical");
-				GetComponent<Rigidbody>().AddForce (transform.forward * 50 * backswing * swingStrength);
-
+				//GetComponent<Rigidbody>().AddForce (transform.forward * 50 * backswing * swingStrength);
 			if (Input.GetKey ("space")) {
 					//GameObject.Find ("ShootLine").GetComponent<MeshRenderer> ().enabled = true;
 				} else {
@@ -33,44 +39,39 @@ public class Mallet : MonoBehaviour
 				}
 		#endif
 
-//		#if (UNITY_ANDROID || UNITY_IOS)
-//			float rollAmount = 0f;
-//			
-			if (Input.touchCount == 1 && Input.GetTouch (0).phase == TouchPhase.Moved) {
-				// Get movement of the finger since last frame
-				Vector2 touchDeltaPosition = Input.GetTouch (0).deltaPosition;
-				Vector3 malletRotation = (transform.forward * touchDeltaPosition.y);
-				//MalletShaft.transform.Rotate (malletRotation);
-				GetComponent<Rigidbody> ().AddForce (transform.forward * Mathf.Pow(touchDeltaPosition.y,2) * Mathf.Sign(touchDeltaPosition.y));
+		#if (UNITY_ANDROID || UNITY_IOS)
+			float rollAmount = 0f;
+			if (Input.touchCount == 1 
+				&& Input.GetTouch (0).phase == TouchPhase.Moved 
+				&& DetectTouchMovement.panDistance.magnitude == 0 
+				&& Mathf.Abs(DetectTouchMovement.turnAngleDelta) == 0) {
+					Debug.Log("swinging");
+					// Get movement of the finger since last frame
+					Vector2 touchDeltaPosition = Input.GetTouch (0).deltaPosition;
+					//float malletRotation = (transform.forward * touchDeltaPosition.y);
+					//MalletShaft.transform.Rotate (new Vector3(startTouch-touchDeltaPosition,0,0));
+					GetComponent<Rigidbody> ().AddForce (transform.forward * Mathf.Pow(touchDeltaPosition.y*.5f,2) * Mathf.Sign(touchDeltaPosition.y));
 			}
-//				// Move object across XY plane
-//				//transform.Translate(-touchDeltaPosition.x * speed, touchDeltaPosition.y * speed, 0);
-//			}else if (Input.touchCount == 2){
-//				float theta = Vector2.Angle(Input.GetTouch(0).position,Input.GetTouch(1).position);
-//				Vector3 cross = Vector3.Cross(Input.GetTouch(0).position, Input.GetTouch(1).position);
-//
-//				if (cross.z > 0){
-//					theta = 360 - theta;
-//				}
-//
-//				if(Input.GetTouch(1).phase == TouchPhase.Began){
-//					Debug.Log("touch start");
-//					initialTheta  = theta;
-//				}
-//				
-//				if(Input.GetTouch(1).phase == TouchPhase.Ended){
-//					Debug.Log("touch end");
-//					oldTheta  = theta;
-//				}
-//
-//				theta+=oldTheta-initialTheta;
-//				Debug.Log("theta "+theta);
-//				Debug.Log("old "+oldTheta);
-//				Debug.Log("init "+initialTheta);
-//
-//				GameObject.Find("CameraController").transform.eulerAngles = new Vector3(0f,theta,0f);
-//			}
-//		#endif
+
+			if (Input.touchCount == 0){
+				BallMarkers.SetActive(true);
+			}else{
+				BallMarkers.SetActive(false);
+			}
+//		if (DetectTouchMovement.panDistance.magnitude > 0 || Mathf.Abs(DetectTouchMovement.turnAngleDelta) > 0){
+//				Debug.Log("not swinging");
+//				limits.min = 0;
+//				limits.bounciness = 0;
+//				limits.max = 0;
+//				MalletShaft.GetComponent<HingeJoint>().limits = limits;
+//				MalletShaft.transform.rotation = new Quaternion();
+//		}else{
+//			limits.min = -120;
+//			limits.bounciness = 0;
+//			limits.max = 170;
+//			MalletShaft.GetComponent<HingeJoint>().limits = limits;
+//		}
+		#endif
 		}
 
 
