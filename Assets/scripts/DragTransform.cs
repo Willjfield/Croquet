@@ -16,35 +16,39 @@ class DragTransform : MonoBehaviour
 
 	void onDrag(){
 		Vector3 currentScreenPoint;
-		#if UNITY_EDITOR
+		//#if UNITY_EDITOR
 		currentScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-		#endif
+		//#endif
 
-		#if (UNITY_ANDROID || UNITY_IOS)
-		currentScreenPoint = new Vector3 (Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, screenPoint.z);
-		#endif
+//		#if UNITY_ANDROID
+//		currentScreenPoint = new Vector3 (Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, screenPoint.z);
+//		#endif
 
 		Vector3 currentPos = Camera.main.ScreenToWorldPoint (currentScreenPoint);
+
 		transform.position = currentPos;
 		if (transform.position.y < -0.08268002f) {
 			float X = transform.position.x; 
 			float Z = transform.position.z;
-			transform.position = new Vector3(X, -0.08268002f, Z);		
+			transform.position = new Vector3 (X, -0.08268002f, Z);		
 		}
 		ballFreeze ();
+		
 	}
 
 	void onUp(){
 		foreach (Transform ball in transform.parent)
 		{
-			ball.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+			if (ball.GetComponent<Rigidbody> ()) {
+				ball.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
+			}
 		}
 	}
 
 	void ballFreeze(){
 		foreach (Transform ball in transform.parent)
 		{
-			if(ball != this.transform){
+			if(ball != this.transform && ball.GetComponent<Rigidbody>()){
 				ball.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
 			}
 		}
