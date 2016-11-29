@@ -39,12 +39,11 @@ public class Mallet : MonoBehaviour
 			if (Input.touchCount == 1 
 				&& Input.GetTouch (0).phase == TouchPhase.Moved 
 				&& DetectTouchMovement.panDistance.magnitude == 0 
-				&& Mathf.Abs(DetectTouchMovement.turnAngleDelta) == 0) {
-					Debug.Log("swinging");
+				&& Mathf.Abs(DetectTouchMovement.turnAngleDelta) == 0
+				&& DragTransform.dragBall == false
+			) {
 					// Get movement of the finger since last frame
 					Vector2 touchDeltaPosition = Input.GetTouch (0).deltaPosition;
-					//float malletRotation = (transform.forward * touchDeltaPosition.y);
-					//MalletShaft.transform.Rotate (new Vector3(startTouch-touchDeltaPosition,0,0));
 					GetComponent<Rigidbody> ().AddForce (transform.forward * Mathf.Pow(touchDeltaPosition.y*.5f,2) * Mathf.Sign(touchDeltaPosition.y));
 			}
 

@@ -4,25 +4,22 @@ using UnityEngine;
 class DragTransform : MonoBehaviour
 {
 	private Vector3 screenPoint;
-	private bool dragBall;
+	public static bool dragBall;
 
 	void Start(){
-		dragBall = true;
+		dragBall = false;
 	}
 
 	void onDown(){
+		dragBall = true;
 		screenPoint = Camera.main.WorldToScreenPoint (gameObject.transform.position);
 	}
 
 	void onDrag(){
+		
 		Vector3 currentScreenPoint;
-		//#if UNITY_EDITOR
-		currentScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-		//#endif
 
-//		#if UNITY_ANDROID
-//		currentScreenPoint = new Vector3 (Input.GetTouch(0).position.x, Input.GetTouch(0).position.y, screenPoint.z);
-//		#endif
+		currentScreenPoint = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
 		Vector3 currentPos = Camera.main.ScreenToWorldPoint (currentScreenPoint);
 
@@ -37,6 +34,7 @@ class DragTransform : MonoBehaviour
 	}
 
 	void onUp(){
+		dragBall = false;
 		foreach (Transform ball in transform.parent)
 		{
 			if (ball.GetComponent<Rigidbody> ()) {
@@ -67,16 +65,8 @@ class DragTransform : MonoBehaviour
 	}
 
 	void Update(){
-		if (Input.touchCount == 1 && Input.GetTouch (0).phase == TouchPhase.Began && dragBall) {
-			onDown ();
-		}
-
-		if (Input.touchCount == 1 && Input.GetTouch (0).phase == TouchPhase.Moved && dragBall) {
-			onDrag ();
-		}
-
-		if (Input.touchCount == 1 && Input.GetTouch (0).phase == TouchPhase.Ended && dragBall) {
-			onUp ();
-		}
+		//if (ClickManager.DoubleClick ()) {
+		//Debug.Log (ClickManager.DoubleClick ());
+		//}
 	}
 }

@@ -64,12 +64,9 @@ public class CameraMover : MonoBehaviour {
 				desiredRotation *= Quaternion.Euler(rotationDeg);
 			}
 			
-			// not so sure those will work:
 			transform.rotation = desiredRotation;
 			this.transform.Translate(new Vector3(DetectTouchMovement.panDistance.y, 0.0f, 0.0f));
 			this.transform.Translate(new Vector3(0.0f, 0.0f,-DetectTouchMovement.panDistance.x));
-			//transform.localPosition += Vector3.forward * DetectTouchMovement.panDistance.y;
-			//transform.localPosition += Vector3.right * DetectTouchMovement.panDistance.x;
 		#endif
 	}
 
@@ -95,7 +92,7 @@ public class CameraMover : MonoBehaviour {
 			
 			transform.position=temp;
 			transform.LookAt(LookTarget);
-			transform.Rotate(0,90,0);
+			transform.Rotate(0,80+(Random.value*20),0);
 		} 
 	}
 }
