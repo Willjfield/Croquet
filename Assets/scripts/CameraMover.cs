@@ -19,7 +19,7 @@ public class CameraMover : MonoBehaviour {
 		if(Camera.current != null)
 		{
 			//Look around
-			float inputRot = Input.GetAxis("Horizontal");
+			//float inputRot = Input.GetAxis("Horizontal");
 			//this.transform.Rotate(Vector3.up*inputRot);
 
 			//Move around
@@ -48,8 +48,8 @@ public class CameraMover : MonoBehaviour {
 	}
 
 	void LateUpdate() {
-		#if (UNITY_ANDROID || UNITY_IOS)
-			float pinchAmount = 0;
+		#if UNITY_ANDROID || UNITY_IOS
+			//float pinchAmount = 0;
 			Quaternion desiredRotation = transform.rotation;
 
 			DetectTouchMovement.Calculate();
@@ -60,7 +60,7 @@ public class CameraMover : MonoBehaviour {
 
 			if (Mathf.Abs(DetectTouchMovement.turnAngleDelta) > 0) { // rotate
 				Vector3 rotationDeg = Vector3.zero;
-				rotationDeg.y = -DetectTouchMovement.turnAngleDelta;
+				rotationDeg.y = -DetectTouchMovement.turnAngleDelta*2f;
 				desiredRotation *= Quaternion.Euler(rotationDeg);
 			}
 			

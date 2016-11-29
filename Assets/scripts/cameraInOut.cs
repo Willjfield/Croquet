@@ -10,7 +10,7 @@ public class cameraInOut : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 temp = transform.position;
+
 		transform.Translate (Vector3.forward * Input.GetAxis ("Mouse ScrollWheel"));
 		if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 5f) {
 			transform.Translate (Vector3.forward * DetectTouchMovement.pinchDistanceDelta * .01f);

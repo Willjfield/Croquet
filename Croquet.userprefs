@@ -1,11 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Marker.cs">
     <Files>
+      <File FileName="Assets/scripts/DragTransform.cs" Line="44" Column="5" />
       <File FileName="Assets/scripts/UIManager.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/Ball.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/RulesManager.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/CameraMover.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/Marker.cs" Line="18" Column="77" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

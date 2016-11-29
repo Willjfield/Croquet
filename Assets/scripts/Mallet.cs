@@ -3,14 +3,9 @@ using System.Collections;
 
 public class Mallet : MonoBehaviour
 {
-		float mousePos = 0.0f;
-		float mousePos2 = 0.0f;
 		private float swingStrength = .5f;
-		float oldTheta = 0f;
-		float initialTheta = 0f;
 		private GameObject MalletShaft;
 		private JointLimits limits;
-		private float startTouch = 0f;
 		private GameObject BallMarkers;
 
 		public void adjustswingStrength(float theStrength){
@@ -28,10 +23,10 @@ public class Mallet : MonoBehaviour
 
 		void LateUpdate ()
 		{
-		#if (UNITY_EDITOR || UNITY_STANDALONE)
+		#if UNITY_EDITOR || UNITY_STANDALONE
 				// Swing Keyboard
 				float backswing = Input.GetAxisRaw ("Vertical");
-				//GetComponent<Rigidbody>().AddForce (transform.forward * 50 * backswing * swingStrength);
+				GetComponent<Rigidbody>().AddForce (transform.forward * 50 * backswing * swingStrength);
 			if (Input.GetKey ("space")) {
 					//GameObject.Find ("ShootLine").GetComponent<MeshRenderer> ().enabled = true;
 				} else {
@@ -39,7 +34,7 @@ public class Mallet : MonoBehaviour
 				}
 		#endif
 
-		#if (UNITY_ANDROID || UNITY_IOS)
+		#if UNITY_ANDROID || UNITY_IOS
 			float rollAmount = 0f;
 			if (Input.touchCount == 1 
 				&& Input.GetTouch (0).phase == TouchPhase.Moved 
