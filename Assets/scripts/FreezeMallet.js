@@ -10,7 +10,7 @@ function Update () {
 
 	if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift) || Input.touchCount > 1 ) {
 		//transform.rotation = Quaternion.Euler (0,0,0);
-		Debug.Log("freezing");
+		//Debug.Log("freezing");
 		limits.min = 0;
 		limits.bounciness = 0;
 		limits.max = 0;

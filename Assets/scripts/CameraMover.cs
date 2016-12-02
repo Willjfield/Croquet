@@ -19,8 +19,8 @@ public class CameraMover : MonoBehaviour {
 		if(Camera.current != null)
 		{
 			//Look around
-			//float inputRot = Input.GetAxis("Horizontal");
-			//this.transform.Rotate(Vector3.up*inputRot);
+			float inputRot = Input.GetAxis("Horizontal");
+			this.transform.Rotate(Vector3.up*inputRot);
 
 			//Move around
 			if (Input.GetKey (KeyCode.W))

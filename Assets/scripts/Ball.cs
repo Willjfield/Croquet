@@ -5,13 +5,14 @@ public class Ball : MonoBehaviour {
 	public float boundary_W, boundary_E, boundary_S, boundary_N;
 	private int nextWicket;
 	private string color;
+	public bool overlapping;
 
 	private bool ballInHand;
 	
 	private int strokesLeft;
 	// Use this for initialization
 	void Start () {
-
+		overlapping = false;
 		boundary_W = -254.2f;
 		boundary_E = -226.355f;
 		boundary_S = .2481f;
@@ -51,6 +52,10 @@ public class Ball : MonoBehaviour {
 	}
 
 	public void moveToNextWicket(){
+		if (strokesLeft == 0) {
+			RulesManager.lastBall ();
+		}
+
 		nextWicket++;
 		strokesLeft++;
 
@@ -58,6 +63,7 @@ public class Ball : MonoBehaviour {
 		ballUI.GetComponentInChildren<UnityEngine.UI.Text>().text = "for wicket #"+nextWicket.ToString();
 		Debug.Log (this.gameObject.name+" is going for wicket " + nextWicket);
 		Debug.Log (this.gameObject.name+" has "+strokesLeft+" strokes left");
+
 	}
 
 	// Update is called once per frame
@@ -94,7 +100,14 @@ public class Ball : MonoBehaviour {
 		
 	}
 
+	void OnTriggerExit(Collider collider){
+		//overlapping = false;
+	}
+
 	void OnTriggerEnter(Collider collider){
+		if (collider.isTrigger) {
+			overlapping = true;
+		}
 		if (collider.name == "MalletHead") {
 
 			ballInHand = false;
@@ -106,6 +119,7 @@ public class Ball : MonoBehaviour {
 
 			if(RulesManager.getCurBallName()!=this.name){
 				Debug.Log (this.gameObject.name+" played out of turn");
+				return;
 			}
 			//Change this to happen when ball stops, not onTriggerEnter
 			if(strokesLeft == 0 && RulesManager.getCurBallName()==this.name){
@@ -115,6 +129,7 @@ public class Ball : MonoBehaviour {
 		}
 
 		if (collider.name.Contains("Ball") && (RulesManager.getLastBallName()==this.name||(strokesLeft==1 && RulesManager.getCurBallName()==this.name))  && !ballInHand) {
+				
 				RulesManager.setBallsInHand();
 				if(RulesManager.getLastBallName()==this.name){
 					RulesManager.lastBall();
