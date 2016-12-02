@@ -108,7 +108,7 @@ public class Ball : MonoBehaviour {
 		if (collider.isTrigger) {
 			overlapping = true;
 		}
-		if (collider.name == "MalletHead") {
+		if (collider.name == "MalletHead" /*&& (the Mallet is swinging)*/) {
 
 			ballInHand = false;
 

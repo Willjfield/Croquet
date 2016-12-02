@@ -44,7 +44,7 @@ public class Mallet : MonoBehaviour
 			) {
 					// Get movement of the finger since last frame
 					Vector2 touchDeltaPosition = Input.GetTouch (0).deltaPosition;
-					GetComponent<Rigidbody> ().AddForce (transform.forward * Mathf.Pow(touchDeltaPosition.y*.5f,2) * Mathf.Sign(touchDeltaPosition.y));
+					GetComponent<Rigidbody> ().AddForce (transform.forward * Mathf.Pow(touchDeltaPosition.y*.25f,2) * Mathf.Sign(touchDeltaPosition.y));
 			}
 
 			if (Input.touchCount == 0){
