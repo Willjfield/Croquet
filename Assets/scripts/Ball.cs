@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Ball : MonoBehaviour {
 	public float boundary_W, boundary_E, boundary_S, boundary_N;
+	private GameObject mallet;
 	private int nextWicket;
 	private string color;
 	public bool overlapping;
@@ -10,6 +11,7 @@ public class Ball : MonoBehaviour {
 	private bool ballInHand;
 	
 	private int strokesLeft;
+
 	// Use this for initialization
 	void Start () {
 		overlapping = false;
@@ -17,6 +19,7 @@ public class Ball : MonoBehaviour {
 		boundary_E = -226.355f;
 		boundary_S = .2481f;
 		boundary_N = -34.65f;
+		mallet = GameObject.Find ("MalletShaft");
 		nextWicket = 1;
 		string name = this.name;
 		color = name.Substring(0,name.Length-4);
@@ -69,7 +72,7 @@ public class Ball : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		Vector3 temp = transform.position; // copy to an auxiliary variable...
-		Vector3 stopMo = new Vector3 (0, 0, 0);
+		Vector3 stopMo = Vector3.zero;
 		
 		if (transform.position.x > boundary_E) {
 			temp.x = boundary_E-.35f; // modify the component you want in the variable...
@@ -97,7 +100,21 @@ public class Ball : MonoBehaviour {
 			GetComponent<Rigidbody>().velocity = stopMo;
 			GetComponent<Rigidbody>().angularVelocity = stopMo;
 		}
-		
+	}
+
+	float speed;
+	bool shouldUpdate = true;
+	void Update(){
+		speed = GetComponent<Rigidbody>().velocity.magnitude;
+		if (speed < 0.005 && shouldUpdate) {
+			GetComponent<Rigidbody> ().velocity = Vector3.zero;
+			//Or
+			//GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+			RulesManager.updateBallPositions ();
+			shouldUpdate = false;
+		} else if(speed > 0.005){
+			shouldUpdate = true;
+		}
 	}
 
 	void OnTriggerExit(Collider collider){
@@ -108,7 +125,7 @@ public class Ball : MonoBehaviour {
 		if (collider.isTrigger) {
 			overlapping = true;
 		}
-		if (collider.name == "MalletHead" /*&& (the Mallet is swinging)*/) {
+		if (collider.name == "MalletHead" && mallet.GetComponent<Rigidbody>().velocity.magnitude>.005f) {
 
 			ballInHand = false;
 
@@ -138,6 +155,7 @@ public class Ball : MonoBehaviour {
 				currentBall.GetComponent<Ball> ().setStrokes (2);
 				//strokesLeft = 2;
 				Debug.Log (this.gameObject.name+" hit "+collider.name+" and has "+strokesLeft+" strokes left");
+				RulesManager.updateDeadness (this.gameObject.name,collider.name);
 				
 		}
 	}

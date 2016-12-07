@@ -38,6 +38,7 @@ class DragTransform : MonoBehaviour
 		dragBall = false;
 		Ball ballContainer = GetComponent<Ball>();
 		ballContainer.overlapping = false;
+		GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
 		foreach (Transform ball in transform.parent)
 		{
 			if (ball.GetComponent<Rigidbody> ()) {
