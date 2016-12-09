@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class RulesManager : MonoBehaviour {
 	public static string[] balls;
@@ -24,13 +27,30 @@ public class RulesManager : MonoBehaviour {
 		}
 	}
 
+	void OnGUI(){
+		if(GUI.Button(new Rect(10,460,300,90), "Save")){
+			Save();
+		}
+
+		if(GUI.Button(new Rect(10,560,300,90), "Load")){
+			Load();
+		}
+	}
+
 	public static void updateBallPositions(){
 		for (int b =0;b<4;b++) {
 			Ball ball = GameObject.Find (balls[b]).GetComponent<Ball>();
 			ballPositions [b] = ball.transform.position;
-			Debug.Log (ballPositions[b]);
+			//Debug.Log (ballPositions[b]);
 		}
+	}
 
+	private static void setBallPositions(){
+		for (int b =0;b<4;b++) {
+			Ball ball = GameObject.Find (balls[b]).GetComponent<Ball>();
+			ball.transform.position = ballPositions [b];
+			//Debug.Log (ballPositions[b]);
+		}
 	}
 
 	private static int getBallIndex(string ball){
@@ -57,8 +77,8 @@ public class RulesManager : MonoBehaviour {
 		int ballCollidedIndex = getBallIndex(ballCollided);
 
 		deadness [ballPlayedIndex, ballCollidedIndex] = true;
-		Debug.Log (ballPlayedIndex+" dead on "+ballCollidedIndex);
-		Debug.Log (deadness[ballPlayedIndex,ballCollidedIndex]);
+		//Debug.Log (ballPlayedIndex+" dead on "+ballCollidedIndex);
+		//Debug.Log (deadness[ballPlayedIndex,ballCollidedIndex]);
 		//Debug.Log (deadness[2,1]);
 	}
 
@@ -109,5 +129,109 @@ public class RulesManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Debug.Log (getCurBallName ());
+	}
+
+	public void Save(){
+		BinaryFormatter bf = new BinaryFormatter ();
+		FileStream file = File.Create (Application.persistentDataPath + "/savedGame.dat");
+
+		PlayerData data = new PlayerData ();
+		data.curBallNum = curBallNum;
+
+		data.ballPositions = new SerializableVector3[4];
+
+		for (int b =0;b<4;b++) {
+			SerializableVector3 pos = new SerializableVector3(ballPositions[b].x,ballPositions[b].y,ballPositions[b].z);
+			data.ballPositions [b] = pos;
+		}
+		data.deadness = deadness;
+
+		bf.Serialize (file, data);
+		file.Close ();
+	}
+
+	public void Load(){
+		if (File.Exists (Application.persistentDataPath + "/savedGame.dat")) {
+			BinaryFormatter bf = new BinaryFormatter ();
+			FileStream file = File.Open (Application.persistentDataPath + "/savedGame.dat", FileMode.Open);
+			PlayerData data = (PlayerData)bf.Deserialize (file);
+			file.Close ();
+
+			curBallNum = data.curBallNum;
+			for (int b =0;b<4;b++) {
+				ballPositions[b] = new Vector3(data.ballPositions[b].x,data.ballPositions[b].y,data.ballPositions[b].z);
+			}
+			deadness = data.deadness;
+
+			setBallPositions ();
+		}
+	}
+}
+
+[Serializable]
+class PlayerData{
+	public int curBallNum;
+	public SerializableVector3[] ballPositions;
+	public bool[,] deadness;
+}
+
+[Serializable]
+public struct SerializableVector3
+{
+	/// <summary>
+	/// x component
+	/// </summary>
+	public float x;
+
+	/// <summary>
+	/// y component
+	/// </summary>
+	public float y;
+
+	/// <summary>
+	/// z component
+	/// </summary>
+	public float z;
+
+	/// <summary>
+	/// Constructor
+	/// </summary>
+	/// <param name="rX"></param>
+	/// <param name="rY"></param>
+	/// <param name="rZ"></param>
+	public SerializableVector3(float rX, float rY, float rZ)
+	{
+		x = rX;
+		y = rY;
+		z = rZ;
+	}
+
+	/// <summary>
+	/// Returns a string representation of the object
+	/// </summary>
+	/// <returns></returns>
+	public override string ToString()
+	{
+		return String.Format("[{0}, {1}, {2}]", x, y, z);
+	}
+
+	/// <summary>
+	/// Automatic conversion from SerializableVector3 to Vector3
+	/// </summary>
+	/// <param name="rValue"></param>
+	/// <returns></returns>
+	public static implicit operator Vector3(SerializableVector3 rValue)
+	{
+		return new Vector3(rValue.x, rValue.y, rValue.z);
+	}
+
+	/// <summary>
+	/// Automatic conversion from Vector3 to SerializableVector3
+	/// </summary>
+	/// <param name="rValue"></param>
+	/// <returns></returns>
+	public static implicit operator SerializableVector3(Vector3 rValue)
+	{
+		return new SerializableVector3(rValue.x, rValue.y, rValue.z);
 	}
 }

@@ -45,6 +45,7 @@ class DragTransform : MonoBehaviour
 				ball.GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.None;
 			}
 		}
+		RulesManager.updateBallPositions ();
 	}
 
 	void ballFreeze(){
