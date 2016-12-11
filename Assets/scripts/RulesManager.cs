@@ -140,11 +140,15 @@ public class RulesManager : MonoBehaviour {
 
 		data.ballPositions = new SerializableVector3[4];
 
-		for (int b =0;b<4;b++) {
-			SerializableVector3 pos = new SerializableVector3(ballPositions[b].x,ballPositions[b].y,ballPositions[b].z);
-			data.ballPositions [b] = pos;
+		for(int b=0;b<balls.Length;b++) {
+			Vector3 ballPos = GameObject.Find (balls[b]).transform.position;
+			data.ballPositions [b] = ballPos;
 		}
+
 		data.deadness = deadness;
+
+		currentBall = GameObject.Find (balls [curBallNum]);
+		data.strokesLeft = currentBall.GetComponent<Ball> ().getStrokes ();
 
 		bf.Serialize (file, data);
 		file.Close ();
@@ -164,6 +168,11 @@ public class RulesManager : MonoBehaviour {
 			deadness = data.deadness;
 
 			setBallPositions ();
+
+			currentBall = GameObject.Find (balls [curBallNum]);
+			currentBall.GetComponent<Ball> ().setStrokes (data.strokesLeft);
+			GameObject cam = GameObject.Find ("CameraController");
+			cam.GetComponent<CameraMover>().moveToBall(currentBall);
 		}
 	}
 }
@@ -173,6 +182,7 @@ class PlayerData{
 	public int curBallNum;
 	public SerializableVector3[] ballPositions;
 	public bool[,] deadness;
+	public int strokesLeft;
 }
 
 [Serializable]
