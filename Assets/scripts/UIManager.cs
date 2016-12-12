@@ -8,23 +8,18 @@ public class UIManager : MonoBehaviour {
 	int selectedItem; 
 	Transform StatusMenu;
 	public List<Image> ColorButtons;
-	public List<GameObject> BallText;
+	private GameObject[] BallBtns;
 
 	public Sprite ActiveSprite;
 	public Sprite InactiveSprite;
+
 	// Use this for initialization
 	void Start () {
 		StatusMenu = transform.FindChild ("CurrentGameStatus");
-//		foreach (Transform child in StatusMenu.transform)
-//		{
-//			ColorButtons.Add (child.GetComponent<Image> ());
-//			GameObject[] grandchildren = child.GetComponentsInChildren<Transform> ();
-//			BallText.Add (grandchildren[1]);
-//		}
-		foreach (Transform child in StatusMenu.transform){
-			child.gameObject.SetActive (false);
-		}
-		toggleGameStatusComponents (true);
+		if (BallBtns == null)
+			BallBtns = GameObject.FindGameObjectsWithTag("BallButton");
+		toggleGameStatusComponents (false);
+		activateCurrentBall ();
 
 	}
 
@@ -58,17 +53,13 @@ public class UIManager : MonoBehaviour {
 	}
 
 	private void toggleGameStatusComponents(bool state){
-		foreach (Transform child in StatusMenu.transform){
-			child.gameObject.SetActive (state);
+		foreach (GameObject button in BallBtns) {
+			button.GetComponent<Image> ().enabled = state;
+			button.GetComponentInChildren<Text> ().enabled = state;
 		}
-//		foreach (Image img in ColorButtons)
-//		{
-//			img.enabled = state;
-//		}
-//		foreach (GameObject txt in BallText)
-//		{
-//			txt.SetActive(state);
-//		}
+		GameObject Scoreboard = GameObject.Find ("ScorebardBackground");
+		Scoreboard.GetComponent<Image> ().enabled = state;
+		Scoreboard.GetComponentsInChildren<Text> () [0].enabled = state;
 	}
 
 	public void deactivatePreviousBall(){

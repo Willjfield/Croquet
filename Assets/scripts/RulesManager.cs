@@ -12,7 +12,7 @@ public class RulesManager : MonoBehaviour {
 	private UIManager UIManagerScript;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		curBallNum = 0;
 		balls = new string[]{"BlueBall","RedBall","BlackBall","YellowBall"};
 		currentBall = GameObject.Find (balls [curBallNum]);
