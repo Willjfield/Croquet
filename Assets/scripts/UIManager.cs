@@ -8,23 +8,29 @@ public class UIManager : MonoBehaviour {
 	int selectedItem; 
 	Transform StatusMenu;
 	public List<Image> ColorButtons;
-	public List<Text> BallText;
+	public List<GameObject> BallText;
+
+	public Sprite ActiveSprite;
+	public Sprite InactiveSprite;
 	// Use this for initialization
 	void Start () {
 		StatusMenu = transform.FindChild ("CurrentGameStatus");
-		foreach (Transform child in StatusMenu.transform)
-		{
-			ColorButtons.Add (child.GetComponent<Image> ());
-			Transform[] grandchildren = child.GetComponentsInChildren<Transform> ();
-			BallText.Add (grandchildren[1].GetComponent<Text>());
+//		foreach (Transform child in StatusMenu.transform)
+//		{
+//			ColorButtons.Add (child.GetComponent<Image> ());
+//			GameObject[] grandchildren = child.GetComponentsInChildren<Transform> ();
+//			BallText.Add (grandchildren[1]);
+//		}
+		foreach (Transform child in StatusMenu.transform){
+			child.gameObject.SetActive (false);
 		}
+		toggleGameStatusComponents (true);
 
-		toggleGameStatusComponents (false);
 	}
 
 	// Update is called once per frame
 	void Update () {
-
+		
 	}
 
 	public void toggleVisibility(){
@@ -35,7 +41,6 @@ public class UIManager : MonoBehaviour {
 			break;
 		case 1:
 			toggleGameStatusComponents(true);
-
 			break;
 		case 2:
 			Application.LoadLevel("Main_Scene");
@@ -53,13 +58,32 @@ public class UIManager : MonoBehaviour {
 	}
 
 	private void toggleGameStatusComponents(bool state){
-		foreach (Image img in ColorButtons)
-		{
-			img.enabled = state;
+		foreach (Transform child in StatusMenu.transform){
+			child.gameObject.SetActive (state);
 		}
-		foreach (Text txt in BallText)
-		{
-			txt.enabled = state;
-		}
+//		foreach (Image img in ColorButtons)
+//		{
+//			img.enabled = state;
+//		}
+//		foreach (GameObject txt in BallText)
+//		{
+//			txt.SetActive(state);
+//		}
+	}
+
+	public void deactivatePreviousBall(){
+		string curBallName = RulesManager.getCurBallName();
+		string curBallButtonColor = GameObject.Find (curBallName).GetComponent<Ball> ().color;
+		GameObject curBallButton = GameObject.Find (curBallButtonColor + "Button");
+		curBallButton.transform.localScale = new Vector3 (1f,1f,1f);
+		curBallButton.GetComponent<Image> ().sprite = InactiveSprite;
+	}
+
+	public void activateCurrentBall(){
+		string curBallName = RulesManager.getCurBallName();
+		string curBallButtonColor = GameObject.Find (curBallName).GetComponent<Ball> ().color;
+		GameObject curBallButton = GameObject.Find (curBallButtonColor + "Button");
+		curBallButton.transform.localScale = new Vector3 (1.2f, 1.2f, 1.2f);
+		curBallButton.GetComponent<Image> ().sprite = ActiveSprite;
 	}
 }

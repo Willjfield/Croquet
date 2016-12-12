@@ -5,13 +5,14 @@ public class Ball : MonoBehaviour {
 	public float boundary_W, boundary_E, boundary_S, boundary_N;
 	private GameObject mallet;
 	private int nextWicket;
-	private string color;
+	public string color;
 	public bool overlapping;
 
 	private bool ballInHand;
 	
 	private int strokesLeft;
 
+	private UIManager UIManagerScript;
 	// Use this for initialization
 	void Start () {
 		overlapping = false;
@@ -20,6 +21,11 @@ public class Ball : MonoBehaviour {
 		boundary_S = .2481f;
 		boundary_N = -34.65f;
 		mallet = GameObject.Find ("MalletShaft");
+		UIManagerScript = GameObject.Find ("UI").GetComponent<UIManager> ();
+		//UIManagerScript.activateCurrentBall ();
+
+
+
 		nextWicket = 1;
 		string name = this.name;
 		color = name.Substring(0,name.Length-4);
@@ -55,15 +61,16 @@ public class Ball : MonoBehaviour {
 	}
 
 	public void moveToNextWicket(){
+		UIManagerScript.deactivatePreviousBall ();
 		if (strokesLeft == 0) {
 			RulesManager.lastBall ();
 		}
+		UIManagerScript.activateCurrentBall ();
 
 		nextWicket++;
 		strokesLeft++;
-
 		GameObject ballUI = GameObject.Find(color+"Button");
-		ballUI.GetComponentInChildren<UnityEngine.UI.Text>().text = "for wicket #"+nextWicket.ToString();
+		ballUI.GetComponentInChildren<UnityEngine.UI.Text>().text = (nextWicket-1).ToString();
 		Debug.Log (this.gameObject.name+" is going for wicket " + nextWicket);
 		Debug.Log (this.gameObject.name+" has "+strokesLeft+" strokes left");
 
@@ -118,12 +125,19 @@ public class Ball : MonoBehaviour {
 	}
 
 	void OnTriggerExit(Collider collider){
-		//overlapping = false;
+		overlapping = false;
+		//GetComponent<Ball> ().transform.GetChild (0).localScale = new Vector3 (4, 4, 4);
+		//GetComponent<Ball> ().transform.GetChild (0).gameObject.SetActive (true);
+		//collider.transform.parent.GetComponent<Ball> ().transform.GetChild (0).localScale = new Vector3 (4, 4, 4);
+
 	}
 
 	void OnTriggerEnter(Collider collider){
 		if (collider.isTrigger) {
 			overlapping = true;
+			//GetComponent<Ball> ().transform.GetChild (0).gameObject.SetActive (false);
+			//collider.transform.parent.GetComponent<Ball> ().transform.GetChild (0).localScale = new Vector3(0,0,0);
+
 		}
 		if (collider.name == "MalletHead" && mallet.GetComponent<Rigidbody>().velocity.magnitude>.005f) {
 
@@ -141,7 +155,9 @@ public class Ball : MonoBehaviour {
 			//Change this to happen when ball stops, not onTriggerEnter
 			if(strokesLeft == 0 && RulesManager.getCurBallName()==this.name){
 				Debug.Log (this.gameObject.name+" is done its turn unless it gets extra shots...");
+				UIManagerScript.deactivatePreviousBall ();
 				RulesManager.nextBall();
+				UIManagerScript.activateCurrentBall ();
 			}
 		}
 
@@ -149,7 +165,9 @@ public class Ball : MonoBehaviour {
 				
 				RulesManager.setBallsInHand();
 				if(RulesManager.getLastBallName()==this.name){
+					UIManagerScript.deactivatePreviousBall ();
 					RulesManager.lastBall();
+					UIManagerScript.activateCurrentBall ();
 				}
 				GameObject currentBall = GameObject.Find (RulesManager.getCurBallName());
 				currentBall.GetComponent<Ball> ().setStrokes (2);
