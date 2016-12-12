@@ -47,6 +47,12 @@ public class UIManager : MonoBehaviour {
 			toggleGameStatusComponents(false);
 			break;
 		case 5:
+			RulesManager.Save ();
+			break;
+		case 6:
+			RulesManager.Load ();
+			break;
+		case 7:
 			Application.Quit();
 			break;
 		}
