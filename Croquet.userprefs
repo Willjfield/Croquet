@@ -1,15 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/RulesManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/UIManager.cs">
     <Files>
+      <File FileName="Assets/scripts/UIManager.cs" Line="75" Column="63" />
       <File FileName="Assets/scripts/CameraMover.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/DragTransform.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/ClickManager.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/Mallet.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/Marker.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/UIManager.cs" Line="62" Column="67" />
-      <File FileName="Assets/scripts/Ball.cs" Line="69" Column="3" />
-      <File FileName="Assets/scripts/RulesManager.cs" Line="15" Column="12" />
+      <File FileName="Assets/scripts/Ball.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/RulesManager.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/cameraInOut.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/rotateCamera.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/MoveCamera.cs" Line="1" Column="1" />

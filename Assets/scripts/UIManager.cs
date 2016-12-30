@@ -21,6 +21,13 @@ public class UIManager : MonoBehaviour {
 		toggleGameStatusComponents (false);
 		activateCurrentBall ();
 
+		foreach (GameObject button in BallBtns) {
+			foreach (Image img in button.GetComponentsInChildren<Image> ()) {
+				img.enabled = false;
+			}
+		}
+
+
 	}
 
 	// Update is called once per frame
@@ -61,7 +68,15 @@ public class UIManager : MonoBehaviour {
 	private void toggleGameStatusComponents(bool state){
 		foreach (GameObject button in BallBtns) {
 			button.GetComponent<Image> ().enabled = state;
-			button.GetComponentInChildren<Text> ().enabled = state;
+			if(button.GetComponentInChildren<Text> () != null)
+			{
+				button.GetComponentInChildren<Text> ().enabled = state;
+			}
+
+//			foreach(Image img in button.GetComponentsInChildren<Image> ()){
+//					img.enabled = state;
+//			}
+			//button.GetComponentInChildren<GameObject> ().SetActive(state);
 		}
 		GameObject Scoreboard = GameObject.Find ("ScorebardBackground");
 		Scoreboard.GetComponent<Image> ().enabled = state;
@@ -72,7 +87,7 @@ public class UIManager : MonoBehaviour {
 		string curBallName = RulesManager.getCurBallName();
 		string curBallButtonColor = GameObject.Find (curBallName).GetComponent<Ball> ().color;
 		GameObject curBallButton = GameObject.Find (curBallButtonColor + "Button");
-		curBallButton.transform.localScale = new Vector3 (1f,1f,1f);
+		//curBallButton.transform.localScale = new Vector3 (.8f,.8f,.8f);
 		curBallButton.GetComponent<Image> ().sprite = InactiveSprite;
 	}
 
@@ -80,7 +95,29 @@ public class UIManager : MonoBehaviour {
 		string curBallName = RulesManager.getCurBallName();
 		string curBallButtonColor = GameObject.Find (curBallName).GetComponent<Ball> ().color;
 		GameObject curBallButton = GameObject.Find (curBallButtonColor + "Button");
-		curBallButton.transform.localScale = new Vector3 (1.2f, 1.2f, 1.2f);
+		//curBallButton.transform.localScale = new Vector3 (1.33f, 1.33f, 1.33f);
 		curBallButton.GetComponent<Image> ().sprite = ActiveSprite;
+	}
+
+	public void setDeadness(){
+		bool[,] deadness = RulesManager.getDeadness ();
+
+		for(int i = 0;i<4;i++){			
+			for (int j = 0; j < 3; j++) {
+				if(deadness[i,j]==true){
+					//Debug.Log ("Deadness: "+ i + "," + j);
+					string colorPlayed = RulesManager.ballColors [i];
+					string colorHit = RulesManager.ballColors [j];
+					GameObject ballInPlayButton = GameObject.Find (colorPlayed+"Button");
+					GameObject hitBallButton = ballInPlayButton.transform.FindChild (colorHit + "Button_Deadness").gameObject;
+					hitBallButton.GetComponent<Image> ().enabled = true;
+					//GameObject wreckClone = (GameObject) Instantiate(YellowButton, transform.position, transform.rotation);
+					//Instantiate(brick, new Vector3(x, y, 0), Quaternion.identity);
+					//ballInPlayButton.
+				}
+				//Debug.Log ("Nums: "+ i + "," + j);
+				//Debug.Log (deadness [i, j]);
+			}
+		}
 	}
 }

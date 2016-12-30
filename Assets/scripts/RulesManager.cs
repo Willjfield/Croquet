@@ -3,9 +3,11 @@ using System.Collections;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.UI;
 
 public class RulesManager : MonoBehaviour {
 	public static string[] balls;
+	public static string[] ballColors;
 	private static int curBallNum;
 	private static GameObject currentBall;
 
@@ -16,12 +18,13 @@ public class RulesManager : MonoBehaviour {
 	void Awake () {
 		curBallNum = 0;
 		balls = new string[]{"BlueBall","RedBall","BlackBall","YellowBall"};
+		ballColors = new string[]{"Blue","Red","Black","Yellow"};
 		currentBall = GameObject.Find (balls [curBallNum]);
 		ballPositions = new Vector3[4];
-		deadness = new bool[4,3];
+		deadness = new bool[4,4];
 		for(int i = 0;i<4;i++){
 			//int index = i;
-			for(int j = 0;j<3;j++){
+			for(int j = 0;j<4;j++){
 				deadness[i,j] = false;
 			}
 		}
@@ -79,8 +82,19 @@ public class RulesManager : MonoBehaviour {
 		deadness [ballPlayedIndex, ballCollidedIndex] = true;
 		//Debug.Log (ballPlayedIndex+" dead on "+ballCollidedIndex);
 		//Debug.Log (deadness[ballPlayedIndex,ballCollidedIndex]);
+		for(int i = 0;i<4;i++){
+			for (int j = 0; j < 4; j++) {
+				//Debug.Log ("Nums: "+ i + "," + j);
+				//Debug.Log (deadness [i, j]);
+			}
+		}
 		//Debug.Log (deadness[2,1]);
+		GameObject.Find("UI").GetComponent<UIManager>().setDeadness();
 	}
+
+	public static bool[,] getDeadness(){
+		return deadness;
+	} 
 
 	public static void nextBall(){
 		curBallNum++;
@@ -130,6 +144,7 @@ public class RulesManager : MonoBehaviour {
 	void Update () {
 		//Debug.Log (getCurBallName ());
 	}
+		
 
 	public static void Save(){
 		BinaryFormatter bf = new BinaryFormatter ();

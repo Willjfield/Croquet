@@ -175,6 +175,7 @@ public class Ball : MonoBehaviour {
 				Debug.Log (this.gameObject.name+" hit "+collider.name+" and has "+strokesLeft+" strokes left");
 				RulesManager.updateDeadness (this.gameObject.name,collider.name);
 				
+				
 		}
 	}
 }

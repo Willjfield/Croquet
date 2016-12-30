@@ -79,7 +79,7 @@ public class CameraMover : MonoBehaviour {
 			GameObject targetWicket = GameObject.Find(targetWicketName);
 			
 			Vector3 wicketDirection = Pos3D-targetWicket.transform.position;
-			float wicketDistance = wicketDirection.magnitude*2f;
+			float wicketDistance = wicketDirection.magnitude*5f;
 			Vector3 normalWicketDirection = wicketDirection/wicketDistance;
 			Vector3 newPosition = Pos3D+normalWicketDirection;
 			
