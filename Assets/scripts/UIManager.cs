@@ -103,7 +103,8 @@ public class UIManager : MonoBehaviour {
 		bool[,] deadness = RulesManager.getDeadness ();
 
 		for(int i = 0;i<4;i++){			
-			for (int j = 0; j < 3; j++) {
+			for (int j = 0; j < 4; j++) {
+				if(i!=j){
 				if(deadness[i,j]==true){
 					//Debug.Log ("Deadness: "+ i + "," + j);
 					string colorPlayed = RulesManager.ballColors [i];
@@ -111,12 +112,25 @@ public class UIManager : MonoBehaviour {
 					GameObject ballInPlayButton = GameObject.Find (colorPlayed+"Button");
 					GameObject hitBallButton = ballInPlayButton.transform.FindChild (colorHit + "Button_Deadness").gameObject;
 					hitBallButton.GetComponent<Image> ().enabled = true;
-					//GameObject wreckClone = (GameObject) Instantiate(YellowButton, transform.position, transform.rotation);
-					//Instantiate(brick, new Vector3(x, y, 0), Quaternion.identity);
-					//ballInPlayButton.
+				}
+				else{
+					string colorPlayed = RulesManager.ballColors [i];
+					string colorHit = RulesManager.ballColors [j];
+					GameObject ballInPlayButton = GameObject.Find (colorPlayed+"Button");
+					Debug.Log ("colorPlayed: " + colorPlayed);
+					Debug.Log("colorHit: " + colorHit);
+					GameObject hitBallButton = ballInPlayButton.transform.FindChild (colorHit + "Button_Deadness").gameObject;
+					hitBallButton.GetComponent<Image> ().enabled = false;
+
+					//if(ballInPlayButton.transform.has
+//					if (GameObject hitBallButton = ballInPlayButton.transform.FindChild (colorHit + "Button_Deadness").gameObject != null) {
+//						hitBallButton.GetComponent<Image> ().enabled = false;
+//
+//					}
 				}
 				//Debug.Log ("Nums: "+ i + "," + j);
 				//Debug.Log (deadness [i, j]);
+				}
 			}
 		}
 	}

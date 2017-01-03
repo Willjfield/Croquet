@@ -71,6 +71,8 @@ public class Ball : MonoBehaviour {
 		strokesLeft++;
 		GameObject ballUI = GameObject.Find(color+"Button");
 		ballUI.GetComponentInChildren<UnityEngine.UI.Text>().text = (nextWicket-1).ToString();
+
+		RulesManager.clearDeadness (this.gameObject.name);
 		Debug.Log (this.gameObject.name+" is going for wicket " + nextWicket);
 		Debug.Log (this.gameObject.name+" has "+strokesLeft+" strokes left");
 
@@ -161,8 +163,8 @@ public class Ball : MonoBehaviour {
 			}
 		}
 
-		if (collider.name.Contains("Ball") && (RulesManager.getLastBallName()==this.name||(strokesLeft==1 && RulesManager.getCurBallName()==this.name))  && !ballInHand) {
-				
+		if (collider.name.Contains("Ball") && nextWicket>1 && (RulesManager.getLastBallName()==this.name||(strokesLeft==1 && RulesManager.getCurBallName()==this.name))  && !ballInHand) {
+			//CAN'T HIT PREVIOUS PLAYED BALL
 				RulesManager.setBallsInHand();
 				if(RulesManager.getLastBallName()==this.name){
 					UIManagerScript.deactivatePreviousBall ();
@@ -174,8 +176,7 @@ public class Ball : MonoBehaviour {
 				//strokesLeft = 2;
 				Debug.Log (this.gameObject.name+" hit "+collider.name+" and has "+strokesLeft+" strokes left");
 				RulesManager.updateDeadness (this.gameObject.name,collider.name);
-				
-				
+	
 		}
 	}
 }

@@ -82,13 +82,21 @@ public class RulesManager : MonoBehaviour {
 		deadness [ballPlayedIndex, ballCollidedIndex] = true;
 		//Debug.Log (ballPlayedIndex+" dead on "+ballCollidedIndex);
 		//Debug.Log (deadness[ballPlayedIndex,ballCollidedIndex]);
-		for(int i = 0;i<4;i++){
-			for (int j = 0; j < 4; j++) {
-				//Debug.Log ("Nums: "+ i + "," + j);
-				//Debug.Log (deadness [i, j]);
-			}
-		}
+//		for(int i = 0;i<4;i++){
+//			for (int j = 0; j < 4; j++) {
+//				//Debug.Log ("Nums: "+ i + "," + j);
+//				//Debug.Log (deadness [i, j]);
+//			}
+//		}
 		//Debug.Log (deadness[2,1]);
+		GameObject.Find("UI").GetComponent<UIManager>().setDeadness();
+	}
+
+	public static void clearDeadness(string ballPlayed){
+		int ballPlayedIndex = getBallIndex(ballPlayed);
+		for (int i = 0; i < 4; i++) {
+			deadness [ballPlayedIndex, i] = false;
+		}
 		GameObject.Find("UI").GetComponent<UIManager>().setDeadness();
 	}
 
