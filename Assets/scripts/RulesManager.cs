@@ -164,7 +164,7 @@ public class RulesManager : MonoBehaviour {
 	public static void Load(string gameName){
 		if (File.Exists (Application.persistentDataPath+"/"+gameName+".dat")) {
 			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/savedGame.dat", FileMode.Open);
+			FileStream file = File.Open (Application.persistentDataPath + "/"+gameName+".dat", FileMode.Open);
 			PlayerData data = (PlayerData)bf.Deserialize (file);
 			file.Close ();
 

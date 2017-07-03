@@ -1,2 +1,2 @@
-Base path: /Applications/Unity_5.5.0/Unity.app/Contents
-Cmd: getPlatforms
+Base path: /Applications/Unity_5.6.?/Unity.app/Contents
+Cmd: initializeCompiler
