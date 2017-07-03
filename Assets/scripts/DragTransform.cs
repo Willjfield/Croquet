@@ -17,8 +17,9 @@ class DragTransform : MonoBehaviour
 
 	void onDrag(){
 		Ball ballContainer = GetComponent<Ball>();
+		//Debug.Log (ballContainer.overlapping);
 		if (!ballContainer.overlapping) {
-			//Debug.Log ("overlapping");
+			
 		
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			// create a plane at 0,0,0 whose normal points to +Y:

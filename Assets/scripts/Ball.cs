@@ -126,15 +126,20 @@ public class Ball : MonoBehaviour {
 
 	void OnTriggerExit(Collider collider){
 		overlapping = false;
+		Ball c = collider.gameObject.GetComponent<Ball> ();
+		c.overlapping = false;
 		//GetComponent<Ball> ().transform.GetChild (0).localScale = new Vector3 (4, 4, 4);
 		//GetComponent<Ball> ().transform.GetChild (0).gameObject.SetActive (true);
-		//collider.transform.parent.GetComponent<Ball> ().transform.GetChild (0).localScale = new Vector3 (4, 4, 4);
+		//collider.transform.parent.gameObject.GetComponent<Ball> ().transform.GetChild (0).localScale = new Vector3 (4, 4, 4);
 
 	}
 
 	void OnTriggerEnter(Collider collider){
-		if (collider.isTrigger) {
+		if (!collider.isTrigger) {
 			overlapping = true;
+
+			Ball c = collider.gameObject.GetComponent<Ball> ();
+			c.overlapping = true;
 			//GetComponent<Ball> ().transform.GetChild (0).gameObject.SetActive (false);
 			//collider.transform.parent.GetComponent<Ball> ().transform.GetChild (0).localScale = new Vector3(0,0,0);
 

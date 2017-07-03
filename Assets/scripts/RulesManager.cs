@@ -131,9 +131,9 @@ public class RulesManager : MonoBehaviour {
 		//Debug.Log (getCurBallName ());
 	}
 
-	public static void Save(){
+	public static void Save(string gameName){
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (Application.persistentDataPath + "/savedGame.dat");
+		FileStream file = File.Create (Application.persistentDataPath + "/"+gameName+".dat");
 
 		PlayerData data = new PlayerData ();
 		data.curBallNum = curBallNum;
@@ -161,8 +161,8 @@ public class RulesManager : MonoBehaviour {
 		file.Close ();
 	}
 
-	public static void Load(){
-		if (File.Exists (Application.persistentDataPath + "/savedGame.dat")) {
+	public static void Load(string gameName){
+		if (File.Exists (Application.persistentDataPath+"/"+gameName+".dat")) {
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (Application.persistentDataPath + "/savedGame.dat", FileMode.Open);
 			PlayerData data = (PlayerData)bf.Deserialize (file);
