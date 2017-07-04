@@ -102,17 +102,28 @@ public class UIManager : MonoBehaviour {
 		{
 			RulesManager.Load(gameName);
             //GameObject.Find("AvailableGames").GetComponent<Dropdown>().ClearOptions();
+            GameObject list = GameObject.Find("AvailableGames").transform.Find("Dropdown List").gameObject;
+            Destroy(list);
 			transform.Find("Load").gameObject.SetActive(false);
 			GameObject.Find("Dropdown").GetComponent<Dropdown>().value = 0;
 			GameObject.Find("Dropdown").GetComponent<Dropdown>().RefreshShownValue();
+
+
 		}
 	}
 
     public void hideElement(GameObject element){
-        element.SetActive(false);
+		
+        GameObject list = GameObject.Find("AvailableGames").transform.Find("Dropdown List").gameObject;
+
+        if(list!=null){
+            Destroy(list);
+        }
+
         //GameObject.Find("AvailableGames").GetComponent<Dropdown>().ClearOptions();
         GameObject.Find("Dropdown").GetComponent<Dropdown>().value = 0;
         GameObject.Find("Dropdown").GetComponent<Dropdown>().RefreshShownValue();
+        element.SetActive(false);
     }
 
 	private void toggleGameStatusComponents(bool state){
