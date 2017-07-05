@@ -126,6 +126,36 @@ public class UIManager : MonoBehaviour {
         element.SetActive(false);
     }
 
+    public void hideSave(){
+		//GameObject list = GameObject.Find("AvailableGames").transform.Find("Dropdown List").gameObject;
+
+		//if (list != null)
+		//{
+		//	Destroy(list);
+		//}
+
+		//GameObject.Find("AvailableGames").GetComponent<Dropdown>().ClearOptions();
+		GameObject.Find("Dropdown").GetComponent<Dropdown>().value = 0;
+		GameObject.Find("Dropdown").GetComponent<Dropdown>().RefreshShownValue();
+		GameObject.Find("Save").SetActive(false);
+    }
+
+    public void hideLoad() {
+
+		//GameObject list = GameObject.Find("AvailableGames").transform.Find("Dropdown List").gameObject;
+
+		//if (list != null)
+		//{
+		//	Destroy(list);
+		//}
+       
+		//GameObject.Find("AvailableGames").GetComponent<Dropdown>().ClearOptions();
+		GameObject.Find("Dropdown").GetComponent<Dropdown>().value = 0;
+		GameObject.Find("Dropdown").GetComponent<Dropdown>().RefreshShownValue();
+        GameObject.Find("Load").SetActive(false);
+
+    }
+
 	private void toggleGameStatusComponents(bool state){
 		foreach (GameObject button in BallBtns) {
 			button.GetComponent<Image> ().enabled = state;
@@ -148,7 +178,10 @@ public class UIManager : MonoBehaviour {
 		string curBallName = RulesManager.getCurBallName();
 		string curBallButtonColor = GameObject.Find (curBallName).GetComponent<Ball> ().color;
 		GameObject curBallButton = GameObject.Find (curBallButtonColor + "Button");
-		curBallButton.transform.localScale = new Vector3 (1.2f, 1.2f, 1.2f);
-		curBallButton.GetComponent<Image> ().sprite = ActiveSprite;
+        if(curBallButton != null){
+			curBallButton.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+			curBallButton.GetComponent<Image>().sprite = ActiveSprite;
+        }
+		
 	}
 }

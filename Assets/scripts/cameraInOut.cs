@@ -13,7 +13,7 @@ public class cameraInOut : MonoBehaviour {
 
 		transform.Translate (Vector3.forward * Input.GetAxis ("Mouse ScrollWheel"));
 		if (Mathf.Abs(DetectTouchMovement.pinchDistanceDelta) > 5f) {
-			transform.Translate (Vector3.forward * DetectTouchMovement.pinchDistanceDelta * .01f);
+			transform.Translate (Vector3.forward * DetectTouchMovement.pinchDistanceDelta * .001f);
 		}
 		/*
 		if (transform.position.z > 5f) {
